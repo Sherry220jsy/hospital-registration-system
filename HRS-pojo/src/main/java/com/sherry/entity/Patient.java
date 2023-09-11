@@ -6,12 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Doctor implements Serializable {
-
+public class Patient  implements Serializable {
     private Long id;
 
     private String username;
@@ -26,13 +26,5 @@ public class Doctor implements Serializable {
 
     private String idNumber;
 
-    private String department;
-
-    private String specialization;
-
-    private String position;
-
-    private Long modelId;
-
+    private Integer noShowCount;
 }
-

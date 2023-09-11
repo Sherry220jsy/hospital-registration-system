@@ -11,19 +11,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PatientDTO implements Serializable {
+public class UserLoginDTO implements Serializable {
 
-    private Long id;
-
-    private String name;
-
-    private  String username;
-
-    private String phone;
+    private String username;
 
     private String password;
 
-    private String sex;
-
-    private String idNumber;
+    private Integer userType;
 }

@@ -24,15 +24,15 @@ mybatis:
 logging:
   level:
     com:
-      sky:
+      sherry:
         mapper: debug
         service: info
         controller: info
 
-sky:
+hrs:
   jwt:
     # 设置jwt签名加密时使用的秘钥
-    admin-secret-key: itcast
+    admin-secret-key: sherry
     # 设置jwt过期时间
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
