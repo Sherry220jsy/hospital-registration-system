@@ -30,4 +30,14 @@ public class PatientController {
      return Result.success();
 }
 
+
+    /**
+     * 患者退出
+     * @return
+     */
+    @PostMapping("/logout")
+public Result<String> logout(){
+     return Result.success();
+}
+
 }

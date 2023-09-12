@@ -11,6 +11,24 @@ public interface DoctorMapper {
      * @param username
      * @return
      */
-    @Select("select * from doctor where username = #{username}")
     Doctor getByUsername(String username);
+
+    /**
+     * 添加医生信息
+     * @param doctor
+     */
+    void insert(Doctor doctor);
+
+    /**
+     * 用id查询医生信息
+     * @param id
+     * @return
+     */
+    Doctor getById(Long id);
+
+    /**
+     * 更新医生信息
+     * @param doctor
+     */
+    void update(Doctor doctor);
 }

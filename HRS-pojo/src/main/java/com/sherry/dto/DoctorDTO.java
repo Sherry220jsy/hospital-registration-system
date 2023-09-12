@@ -17,6 +17,8 @@ public class DoctorDTO implements Serializable {
 
     private String username;
 
+    private String password;
+
     private String name;
 
     private String phone;

@@ -1,4 +1,4 @@
-package com.sherry.controller.handler;
+package com.sherry.handler;
 
 
 import com.sherry.constant.MessageConstant;

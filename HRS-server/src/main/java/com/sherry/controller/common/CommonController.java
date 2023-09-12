@@ -50,7 +50,7 @@ public class CommonController {
             Doctor doctor = doctorService.login(userLoginDTO);
             //登录成功后，生成jwt令牌
             Map<String, Object> claims = new HashMap<>();
-            claims.put(JwtClaimsConstant.EMP_ID, doctor.getId());
+            claims.put(JwtClaimsConstant.USER_ID, doctor.getId());
             String token = JwtUtil.createJWT(
                     jwtProperties.getAdminSecretKey(),
                     jwtProperties.getAdminTtl(),
@@ -66,7 +66,7 @@ public class CommonController {
             Patient patient = patientService.login(userLoginDTO);
             //登录成功后，生成jwt令牌
             Map<String, Object> claims = new HashMap<>();
-            claims.put(JwtClaimsConstant.EMP_ID, patient.getId());
+            claims.put(JwtClaimsConstant.USER_ID, patient.getId());
             String token = JwtUtil.createJWT(
                     jwtProperties.getAdminSecretKey(),
                     jwtProperties.getAdminTtl(),

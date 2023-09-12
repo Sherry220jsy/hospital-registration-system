@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sherry.mapper.DoctorMapper">
+    <update id="update" parameterType="com.sherry.entity.Doctor">
+        update doctor
+<set>
+    <if test="username!=null"> username = #{username},</if>
+    <if test="name!=null"> name = #{name},</if>
+    <if test="phone!=null"> phone = #{phone},</if>
+    <if test="sex!=null"> sex = #{sex},</if>
+    <if test="idNumber!=null"> id_number = #{idNumber},</if>
+    <if test="department!=null"> department = #{department},</if>
+    <if test="specialization!=null"> specialization = #{specialization},</if>
+    <if test="position!=null"> position = #{position},</if>
+</set>
+            where id=#{id}
+    </update>
+
+    <select id="getByUsername" resultType="com.sherry.entity.Doctor">
+        select * from doctor where username = #{username}
+    </select>
+    <select id="getById" resultType="com.sherry.entity.Doctor">
+        select * from doctor where id=#{id};
+    </select>
+    <insert id="insert">
+          insert into doctor (id,name,username,password,phone,sex,id_number,department,specialization,position)
+          values (#{id},#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{department},#{specialization},#{position})
+    </insert>
+
+</mapper>
