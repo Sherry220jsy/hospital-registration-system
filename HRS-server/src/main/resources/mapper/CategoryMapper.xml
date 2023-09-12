@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sherry.mapper.CategoryMapper">
+
+    <insert id="insert">
+        insert into category (category_id,fee,category_name,time,doctor_id)
+        values (#{categoryId},#{fee},#{categoryName},#{time},#{doctorId})
+    </insert>
+    <update id="update">
+        update category
+<set>
+    <if test="categoryName != null"> category_name=#{categoryName},</if>
+    <if test="time != null"> time=#{time},</if>
+    <if test="fee != null"> fee=#{fee},</if>
+</set>
+            where category_id =#{categoryId}
+    </update>
+
+    <delete id="deleteById">
+        delete from category where category_id=#{categoryId}
+    </delete>
+
+    <select id="getByDoctorId" resultType="com.sherry.entity.Category">
+        select * from category where doctor_id=#{doctorId}
+    </select>
+</mapper>

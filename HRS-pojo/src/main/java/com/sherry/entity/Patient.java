@@ -12,7 +12,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 public class Patient  implements Serializable {
-    private Long id;
+
+    private Long patientId;
 
     private String username;
 

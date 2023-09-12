@@ -2,12 +2,15 @@ package com.sherry.service.impl;
 
 import com.sherry.constant.MessageConstant;
 import com.sherry.dto.DoctorDTO;
+import com.sherry.dto.PageQueryDTO;
 import com.sherry.dto.UserLoginDTO;
+import com.sherry.entity.Category;
 import com.sherry.entity.Doctor;
-import com.sherry.entity.Patient;
 import com.sherry.exception.AccountNotFoundException;
 import com.sherry.exception.PasswordErrorException;
+import com.sherry.mapper.CategoryMapper;
 import com.sherry.mapper.DoctorMapper;
+import com.sherry.result.PageResult;
 import com.sherry.service.DoctorService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,8 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Autowired
     private DoctorMapper doctorMapper;
+    @Autowired
+    private CategoryMapper categoryMapper;
     /**
      * 医生登录
      * @param userLoginDTO
@@ -74,11 +79,11 @@ public class DoctorServiceImpl implements DoctorService {
 
     /**
      * 根据id查询医生
-     * @param id
+     * @param doctorId
      * @return
      */
-    public Doctor getById(Long id) {
-        Doctor doctor=doctorMapper.getById(id);
+    public Doctor getById(Long doctorId) {
+        Doctor doctor=doctorMapper.getById(doctorId);
         doctor.setPassword("******");
         return doctor;
     }
@@ -93,4 +98,16 @@ public class DoctorServiceImpl implements DoctorService {
         doctor.setModelId(null);
         doctorMapper.update(doctor);
     }
+
+
+    /**
+     * 查询患者信息
+     * @param pageQueryDTO
+     * @return
+     */
+    public PageResult pagePatient(PageQueryDTO pageQueryDTO) {
+        return null;
+    }
+
+
 }

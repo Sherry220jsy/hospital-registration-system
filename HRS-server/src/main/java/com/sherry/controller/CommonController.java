@@ -1,4 +1,4 @@
-package com.sherry.controller.common;
+package com.sherry.controller;
 
 
 import com.sherry.constant.JwtClaimsConstant;
@@ -50,14 +50,14 @@ public class CommonController {
             Doctor doctor = doctorService.login(userLoginDTO);
             //登录成功后，生成jwt令牌
             Map<String, Object> claims = new HashMap<>();
-            claims.put(JwtClaimsConstant.USER_ID, doctor.getId());
+            claims.put(JwtClaimsConstant.USER_ID, doctor.getDoctorId());
             String token = JwtUtil.createJWT(
                     jwtProperties.getAdminSecretKey(),
                     jwtProperties.getAdminTtl(),
                     claims);
 
             userLoginVO=UserLoginVO.builder()
-                    .id(doctor.getId())
+                    .id(doctor.getDoctorId())
                     .userName(doctor.getUsername())
                     .name(doctor.getName())
                     .token(token)
@@ -66,13 +66,13 @@ public class CommonController {
             Patient patient = patientService.login(userLoginDTO);
             //登录成功后，生成jwt令牌
             Map<String, Object> claims = new HashMap<>();
-            claims.put(JwtClaimsConstant.USER_ID, patient.getId());
+            claims.put(JwtClaimsConstant.USER_ID, patient.getPatientId());
             String token = JwtUtil.createJWT(
                     jwtProperties.getAdminSecretKey(),
                     jwtProperties.getAdminTtl(),
                     claims);
             userLoginVO=UserLoginVO.builder()
-                    .id(patient.getId())
+                    .id(patient.getPatientId())
                     .userName(patient.getUsername())
                     .name(patient.getName())
                     .token(token)

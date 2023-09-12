@@ -1,4 +1,4 @@
-package com.sherry.controller.patient;
+package com.sherry.controller;
 
 import com.sherry.dto.PatientDTO;
 import com.sherry.result.Result;

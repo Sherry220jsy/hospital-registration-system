@@ -14,18 +14,18 @@
     <if test="specialization!=null"> specialization = #{specialization},</if>
     <if test="position!=null"> position = #{position},</if>
 </set>
-            where id=#{id}
+            where doctor_id=#{doctorId}
     </update>
 
     <select id="getByUsername" resultType="com.sherry.entity.Doctor">
         select * from doctor where username = #{username}
     </select>
     <select id="getById" resultType="com.sherry.entity.Doctor">
-        select * from doctor where id=#{id};
+        select * from doctor where doctor_id=#{doctorId}
     </select>
     <insert id="insert">
-          insert into doctor (id,name,username,password,phone,sex,id_number,department,specialization,position)
-          values (#{id},#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{department},#{specialization},#{position})
+          insert into doctor (doctor_id,name,username,password,phone,sex,id_number,department,specialization,position)
+          values (#{doctorId},#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{department},#{specialization},#{position})
     </insert>
 
 </mapper>

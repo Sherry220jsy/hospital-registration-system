@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Builder
 public class PatientDTO implements Serializable {
 
-    private Long id;
+    private Long patientId;
 
     private String name;
 

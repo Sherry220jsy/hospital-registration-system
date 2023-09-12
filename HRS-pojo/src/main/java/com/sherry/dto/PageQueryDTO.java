@@ -1,4 +1,4 @@
-package com.sherry.vo;
+package com.sherry.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,13 +10,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PatientUpdateVO implements Serializable {
-    private Long patientId;
+public class PageQueryDTO implements Serializable {
 
-    private String name;
+    //页码
+    private int page;
 
-    private String sex;
-
-    private String phone;
-
+    //每页显示记录数
+    private int pageSize;
 }

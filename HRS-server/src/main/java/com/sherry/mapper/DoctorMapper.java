@@ -2,7 +2,6 @@ package com.sherry.mapper;
 
 import com.sherry.entity.Doctor;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface DoctorMapper {
@@ -24,7 +23,7 @@ public interface DoctorMapper {
      * @param id
      * @return
      */
-    Doctor getById(Long id);
+    Doctor getById(Long doctorId);
 
     /**
      * 更新医生信息

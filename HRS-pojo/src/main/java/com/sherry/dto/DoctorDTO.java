@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Builder
 public class DoctorDTO implements Serializable {
 
-    private Long id;
+    private Long doctorId;
 
     private String username;
 

@@ -7,8 +7,8 @@
         select * from patient where username = #{username}
     </select>
     <insert id="insert">
-          insert into patient (id,name,username,password,phone,sex,id_number,no_show_count)
-          values (#{id},#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{noShowCount})
+          insert into patient (patient_id,name,username,password,phone,sex,id_number,no_show_count)
+          values (#{patientId},#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{noShowCount})
     </insert>
 
 </mapper>

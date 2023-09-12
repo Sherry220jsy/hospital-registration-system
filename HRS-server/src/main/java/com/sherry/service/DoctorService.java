@@ -1,8 +1,11 @@
 package com.sherry.service;
 
 import com.sherry.dto.DoctorDTO;
+import com.sherry.dto.PageQueryDTO;
 import com.sherry.dto.UserLoginDTO;
+import com.sherry.entity.Category;
 import com.sherry.entity.Doctor;
+import com.sherry.result.PageResult;
 
 public interface DoctorService {
 
@@ -32,4 +35,13 @@ public interface DoctorService {
      * @param doctorDTO
      */
     void update(DoctorDTO doctorDTO);
+
+    /**
+     * 查询患者信息
+     * @param pageQueryDTO
+     * @return
+     */
+    PageResult pagePatient(PageQueryDTO pageQueryDTO);
+
+
 }
