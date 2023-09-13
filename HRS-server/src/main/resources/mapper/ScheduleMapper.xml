@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sherry.mapper.ScheduleMapper">
+
+
+    <insert id="insert">
+        insert into schedule (schedule_id,doctor_id,date,schedule_start_time,schedule_end_time)
+        values (#{scheduleId},#{doctorId},#{date},#{scheduleStartTime},#{scheduleEndTime})
+    </insert>
+    <update id="update">
+        update schedule
+<set>
+    <if test="scheduleStartTime !=null" >schedule_start_time =#{scheduleStartTime},</if>
+    <if test="scheduleEndTime !=null" >schedule_end_time =#{scheduleEndTime},</if>
+    <if test="date !=null" >date =#{date},</if>
+</set>
+        where schedule_id=#{scheduleId}
+    </update>
+
+    <delete id="delectByScheduleId">
+        delete from schedule where schedule_id=#{scheduleId}
+    </delete>
+
+    <select id="getDay" resultType="com.sherry.entity.Schedule">
+        select * from schedule where date=#{date}
+      order by date asc,schedule_start_time asc,schedule_end_time asc
+    </select>
+
+    <select id="getWeek" resultType="com.sherry.entity.Schedule">
+        select * from schedule
+        where YEARWEEK(date) = YEARWEEK(#{date})
+        order by date asc,schedule_start_time asc,schedule_end_time asc
+    </select>
+
+    <select id="getMonth" resultType="com.sherry.entity.Schedule">
+        select * from schedule
+        where DATE_FORMAT(date, '%Y-%m') = DATE_FORMAT(#{date}, '%Y-%m')
+        order by date asc,schedule_start_time asc,schedule_end_time asc
+    </select>
+
+</mapper>
