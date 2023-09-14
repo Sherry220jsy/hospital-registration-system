@@ -16,6 +16,7 @@ public class Registration implements Serializable {
     private Long doctorId;
     private Long patientId;
     private Long modelCategoryId;
+    private Long categoryId;
     private Integer status;
     private String visitStartTime;
     private String visitEndTime;

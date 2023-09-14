@@ -1,7 +1,9 @@
 package com.sherry.mapper;
 
+import com.github.pagehelper.Page;
 import com.sherry.entity.Registration;
 import com.sherry.vo.PatientRegistrationVO;
+import com.sherry.vo.RegistrationVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +19,9 @@ public interface RegistrationMapper {
 
 
     void update(Registration registration);
+
+    Page<RegistrationVO> getByPatientId(Long patientId);
+
+
+    Page<RegistrationVO> pageGetByDoctorId(Long doctorId);
 }

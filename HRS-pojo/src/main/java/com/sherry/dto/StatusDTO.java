@@ -1,4 +1,4 @@
-package com.sherry.vo;
+package com.sherry.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,24 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PatientRegistrationVO implements Serializable {
+public class StatusDTO implements Serializable {
 
     private Long registrationId;
 
     private Integer status;
-
-    private String visitStartTime;
-
-    private String visitEndTime;
-
-    private String date;
-
-    private Integer fee;
-
-    private String categoryName;
 }

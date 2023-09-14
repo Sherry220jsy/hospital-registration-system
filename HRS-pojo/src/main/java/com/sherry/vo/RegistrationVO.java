@@ -8,12 +8,15 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class PatientRegistrationVO implements Serializable {
-
+@NoArgsConstructor
+@AllArgsConstructor
+public class RegistrationVO implements Serializable {
     private Long registrationId;
+
+    private String patientName;
+
+    private String doctorName;
 
     private Integer status;
 

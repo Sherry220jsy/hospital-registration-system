@@ -1,5 +1,7 @@
 package com.sherry.service;
 
+import com.sherry.dto.PageQueryDTO;
+import com.sherry.dto.StatusDTO;
 import com.sherry.result.PageResult;
 import com.sherry.vo.PatientRegistrationVO;
 
@@ -14,4 +16,10 @@ public interface RegistrationService {
 
 
     List<PatientRegistrationVO> getByDoctorId(Long doctorId, String date);
+
+    PageResult getByPatientId(PageQueryDTO pageQueryDTO);
+
+    PageResult getByDoctorId(PageQueryDTO pageQueryDTO);
+
+    void updateStatus(StatusDTO statusDTO);
 }
