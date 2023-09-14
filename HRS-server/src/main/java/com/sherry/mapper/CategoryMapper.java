@@ -32,4 +32,6 @@ public interface CategoryMapper {
      * @return
      */
     List<Category> getByDoctorId(Long doctorId);
+
+    Category getByCategoryId(Long categoryId);
 }

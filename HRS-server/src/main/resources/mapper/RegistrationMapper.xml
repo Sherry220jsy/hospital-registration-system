@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sherry.mapper.RegistrationMapper">
+
+    <insert id="insert">
+        insert into registration (doctor_id,model_category_id,status,visit_start_time,visit_end_time,date)
+       values (#{doctorId},#{modelCategoryId},#{status},#{visitStartTime},#{visitEndTime},#{date})
+    </insert>
+    <update id="update">
+        update registration
+        <set>
+            <if test="patientId!=null"> patient_id=#{patientId},</if>
+            <if test="status !=null"> status =#{status}</if>
+        </set>
+        where registration_id =#{registrationId}
+    </update>
+
+    <delete id="deleteByModelCategoryId">
+        delete from registration where model_category_id=#{modelCategoryId} and date=#{date}
+    </delete>
+    <select id="getByDoctorId" resultType="com.sherry.vo.PatientRegistrationVO">
+        select r.registration_id,r.status,r.visit_start_time,r.visit_end_time,mc.category_name from registration r
+        join model_category mc on r.model_category_id=mc.model_category_id
+        where r.date =#{date} and r.doctor_id=#{doctorId}
+       order by r.visit_start_time desc
+    </select>
+
+
+</mapper>

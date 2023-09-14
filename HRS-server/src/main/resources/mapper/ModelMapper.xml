@@ -3,9 +3,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sherry.mapper.ModelMapper">
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="model_id">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="modelId">
        insert into model (doctor_id,model_name,model_start_time,model_end_time)
         values (#{doctorId},#{modelName},#{modelStartTime},#{modelEndTime})
     </insert>
+    <update id="update">
+        update model
+    <set>
+        <if test="modelName != null">model_name=#{modelName}</if>
+        <if test="modelStartTime != null">model_start_time=#{modelStartTime}</if>
+        <if test="modelEndTime != null">model_end_time=#{modelEndTime}</if>
+    </set>
+      where model_id=#{modelId}
+    </update>
+    <delete id="delete">
+        delete from model where model_id=#{modelId}
+    </delete>
+    <select id="getByDoctorId" resultType="com.sherry.entity.Model">
+        select * from model where doctor_id=#{doctorId}
+    </select>
+    <select id="getByModelId" resultType="com.sherry.entity.Model">
+        select * from model where model_id=#{modelId}
+    </select>
 
 </mapper>

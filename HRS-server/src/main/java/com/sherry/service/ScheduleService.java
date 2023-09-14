@@ -30,4 +30,6 @@ public interface ScheduleService {
      * @return
      */
     PageResult pageByDateType(SchedulePageDTO schedulePageDTO);
+
+    Schedule getByDate(Long doctorId, String date);
 }

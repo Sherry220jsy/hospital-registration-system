@@ -8,6 +8,8 @@ import com.sherry.result.PageResult;
 import com.sherry.result.Result;
 import com.sherry.service.DoctorService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +53,10 @@ public class DoctorController {
     public Result update(@RequestBody DoctorDTO doctorDTO){
         log.info("修改医生信息：{}",doctorDTO);
         doctorDTO.setDoctorId(BaseContext.getCurrentId());
-        doctorService.update(doctorDTO);
+        Doctor doctor = new Doctor();
+        BeanUtils.copyProperties(doctorDTO,doctor);
+        doctor.setModelId(null);
+        doctorService.update(doctor);
         return Result.success();
     }
 
@@ -65,6 +70,13 @@ public class DoctorController {
     public Result<PageResult> pagePatient(PageQueryDTO pageQueryDTO){
         log.info("患者分页查询，参数为{}",pageQueryDTO);
         PageResult pageResult = doctorService.pagePatient(pageQueryDTO);
+        return Result.success(pageResult);
+    }
+
+
+    @GetMapping("/page")
+    public Result<PageResult> pageDoctor(PageQueryDTO pageQueryDTO) {
+        PageResult pageResult = doctorService.pageDoctor(pageQueryDTO);
         return Result.success(pageResult);
     }
 

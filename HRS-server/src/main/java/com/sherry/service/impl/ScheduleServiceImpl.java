@@ -67,4 +67,10 @@ public class ScheduleServiceImpl implements ScheduleService {
         return new PageResult(total,records);
     }
 
+
+    public Schedule getByDate(Long doctorId, String date) {
+        Schedule schedule=scheduleMapper.getByDate(doctorId,date);
+        return schedule;
+    }
+
 }

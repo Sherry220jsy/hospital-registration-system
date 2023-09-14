@@ -15,9 +15,14 @@ import java.util.List;
 @Builder
 public class ModelDTO implements Serializable {
     private Long modelId;
+
     private Long doctorId;
+
     private String modelName;
+
     private String modelStartTime;
+
     private String modelEndTime;
-    private List<ModelCategory> modelContext;
+
+    private List<ModelCategory> modelCategories;
 }

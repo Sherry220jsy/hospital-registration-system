@@ -1,10 +1,12 @@
 package com.sherry.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sherry.constant.MessageConstant;
 import com.sherry.dto.DoctorDTO;
 import com.sherry.dto.PageQueryDTO;
+import com.sherry.dto.PatientDoctorVO;
 import com.sherry.dto.UserLoginDTO;
-import com.sherry.entity.Category;
 import com.sherry.entity.Doctor;
 import com.sherry.exception.AccountNotFoundException;
 import com.sherry.exception.PasswordErrorException;
@@ -16,6 +18,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+
+import java.util.List;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -90,12 +94,9 @@ public class DoctorServiceImpl implements DoctorService {
 
     /**
      * 修改医生信息
-     * @param doctorDTO
+     * @param doctor
      */
-    public void update(DoctorDTO doctorDTO) {
-        Doctor doctor = new Doctor();
-        BeanUtils.copyProperties(doctorDTO,doctor);
-        doctor.setModelId(null);
+    public void update(Doctor doctor) {
         doctorMapper.update(doctor);
     }
 
@@ -108,6 +109,29 @@ public class DoctorServiceImpl implements DoctorService {
     public PageResult pagePatient(PageQueryDTO pageQueryDTO) {
         return null;
     }
+
+    /**
+     *
+     * @param doctorId
+     * @return
+     */
+    public Long getModelId(Long doctorId) {
+       Long modelId =doctorMapper.getModelId(doctorId);
+       return modelId;
+    }
+
+    /**
+     * 分页查询所有医生
+     * @return
+     */
+    public PageResult pageDoctor(PageQueryDTO pageQueryDTO) {
+        PageHelper.startPage(pageQueryDTO.getPage(),pageQueryDTO.getPageSize());
+        Page<PatientDoctorVO> page=doctorMapper.getPatientDoctor();
+        long total=page.getTotal();
+        List<PatientDoctorVO> records = page.getResult();
+        return new PageResult(total,records);
+    }
+
 
 
 }

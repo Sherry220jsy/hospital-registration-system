@@ -38,5 +38,8 @@
         where DATE_FORMAT(date, '%Y-%m') = DATE_FORMAT(#{date}, '%Y-%m')
         order by date asc,schedule_start_time asc,schedule_end_time asc
     </select>
+    <select id="getByDate" resultType="com.sherry.entity.Schedule">
+        select * from schedule where date=#{date} and doctor_id=#{doctorId}
+    </select>
 
 </mapper>

@@ -47,4 +47,6 @@ public interface ScheduleMapper {
      * @return
      */
     Page<Schedule> getMonth(SchedulePageDTO schedulePageDTO);
+
+    Schedule getByDate(Long doctorId, String date);
 }

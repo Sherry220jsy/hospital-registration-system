@@ -1,5 +1,7 @@
 package com.sherry.mapper;
 
+import com.github.pagehelper.Page;
+import com.sherry.dto.PatientDoctorVO;
 import com.sherry.entity.Doctor;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,7 +22,7 @@ public interface DoctorMapper {
 
     /**
      * 用id查询医生信息
-     * @param id
+     * @param doctorId
      * @return
      */
     Doctor getById(Long doctorId);
@@ -30,4 +32,9 @@ public interface DoctorMapper {
      * @param doctor
      */
     void update(Doctor doctor);
+
+
+    Long getModelId(Long doctorId);
+
+    Page<PatientDoctorVO> getPatientDoctor();
 }

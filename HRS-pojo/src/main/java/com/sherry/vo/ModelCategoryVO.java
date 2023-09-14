@@ -1,22 +1,19 @@
-package com.sherry.entity;
+package com.sherry.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ModelCategory implements Serializable {
+public class ModelCategoryVO implements Serializable {
     private Long modelCategoryId;
 
     private Long modelId;
-
-    private Long categoryId;
 
     private String categoryStartTime;
 

@@ -24,4 +24,7 @@
     <select id="getByDoctorId" resultType="com.sherry.entity.Category">
         select * from category where doctor_id=#{doctorId}
     </select>
+    <select id="getByCategoryId" resultType="com.sherry.entity.Category">
+        select * from category where category_id=#{category_id}
+    </select>
 </mapper>

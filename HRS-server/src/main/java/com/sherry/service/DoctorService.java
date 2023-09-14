@@ -34,7 +34,7 @@ public interface DoctorService {
      * 修改医生信息
      * @param doctorDTO
      */
-    void update(DoctorDTO doctorDTO);
+    void update(Doctor doctor);
 
     /**
      * 查询患者信息
@@ -42,6 +42,15 @@ public interface DoctorService {
      * @return
      */
     PageResult pagePatient(PageQueryDTO pageQueryDTO);
+
+
+    Long getModelId(Long currentId);
+
+    /**
+     * 分页查询所有医生
+     * @return
+     */
+    PageResult pageDoctor(PageQueryDTO pageQueryDTO);
 
 
 }

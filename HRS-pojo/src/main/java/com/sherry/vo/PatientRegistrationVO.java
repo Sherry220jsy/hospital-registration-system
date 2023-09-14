@@ -1,4 +1,4 @@
-package com.sherry.entity;
+package com.sherry.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,18 +11,21 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ModelCategory implements Serializable {
+public class PatientRegistrationVO implements Serializable {
+
+    private Long registrationId;
+
+    private Long doctorId;
+
     private Long modelCategoryId;
 
-    private Long modelId;
+    private Integer status;
 
-    private Long categoryId;
+    private String visitStartTime;
 
-    private String categoryStartTime;
+    private String visitEndTime;
 
-    private String categoryEndTime;
+    private String date;
 
     private String categoryName;
-
-    private Integer count;
 }
