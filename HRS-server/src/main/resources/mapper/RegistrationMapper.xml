@@ -40,6 +40,12 @@
         order by r.date desc ,r.visit_start_time asc
 
     </select>
+    <select id="getPatientByDoctorId" resultType="com.sherry.vo.PatientVO">
+        select r.registration_id, p.name as patient_name,p.sex,p.phone,p.patient_id,p.no_show_count,p.id_number
+        from registration r
+        left join  patient  p on r.patient_id=p.patient_id
+        where r.doctor_id=#{doctorId} and r.status != 0
+    </select>
 
 
 </mapper>

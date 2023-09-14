@@ -22,4 +22,6 @@ public interface RegistrationService {
     PageResult getByDoctorId(PageQueryDTO pageQueryDTO);
 
     void updateStatus(StatusDTO statusDTO);
+
+    PageResult getPatientByDoctorId(PageQueryDTO pageQueryDTO);
 }

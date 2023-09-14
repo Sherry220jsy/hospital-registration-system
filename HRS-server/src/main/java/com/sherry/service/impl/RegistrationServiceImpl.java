@@ -16,6 +16,7 @@ import com.sherry.result.PageResult;
 import com.sherry.result.Result;
 import com.sherry.service.RegistrationService;
 import com.sherry.vo.PatientRegistrationVO;
+import com.sherry.vo.PatientVO;
 import com.sherry.vo.RegistrationVO;
 
 import org.springframework.beans.BeanUtils;
@@ -108,6 +109,12 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
 
+    /**
+     * 患者查询某个医生的挂号信息
+     * @param doctorId
+     * @param date
+     * @return
+     */
     public List<PatientRegistrationVO> getByDoctorId(Long doctorId, String date) {
         List<PatientRegistrationVO>  patientRegistrationVOs=registrationMapper.getByDoctorId(doctorId,date);
         return patientRegistrationVOs;
@@ -128,7 +135,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     /**
-     * 医生查询挂号订单
+     * 医生查询自己挂号订单
      * @param pageQueryDTO
      * @return
      */
@@ -150,6 +157,16 @@ public class RegistrationServiceImpl implements RegistrationService {
         registration.setRegistrationId(statusDTO.getRegistrationId());
         registration.setStatus(statusDTO.getStatus());
         registrationMapper.update(registration);
+    }
+
+
+    public PageResult getPatientByDoctorId(PageQueryDTO pageQueryDTO) {
+        PageHelper.startPage(pageQueryDTO.getPage(),pageQueryDTO.getPageSize());
+        Long doctorId =BaseContext.getCurrentId();
+        Page<PatientVO> page = registrationMapper.getPatientByDoctorId(doctorId);
+        long total =page.getTotal();
+        List<PatientVO> records = page.getResult();
+        return new PageResult(total,records);
     }
 
 

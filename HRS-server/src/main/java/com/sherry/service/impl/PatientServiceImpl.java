@@ -2,6 +2,7 @@ package com.sherry.service.impl;
 
 import com.sherry.constant.MessageConstant;
 import com.sherry.dto.PatientDTO;
+import com.sherry.dto.PatientUpdateDTO;
 import com.sherry.dto.UserLoginDTO;
 import com.sherry.entity.Patient;
 import com.sherry.exception.PasswordErrorException;
@@ -73,5 +74,16 @@ public class PatientServiceImpl implements PatientService {
         //添加患者到数据库
         patientMapper.insert(patient);
 
+    }
+
+
+    /**
+     * 医生修改患者信息
+     * @param patientUpdateDTO
+     */
+    public void updatePatientInfo(PatientUpdateDTO patientUpdateDTO) {
+        Patient patient = new Patient();
+        BeanUtils.copyProperties(patientUpdateDTO,patient);
+        patientMapper.update(patient);
     }
 }

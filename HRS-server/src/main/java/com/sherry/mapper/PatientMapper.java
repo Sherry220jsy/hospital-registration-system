@@ -19,4 +19,6 @@ public interface PatientMapper {
      * @param patient
      */
     void insert(Patient patient);
+
+    void update(Patient patient);
 }

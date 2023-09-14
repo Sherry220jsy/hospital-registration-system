@@ -2,6 +2,7 @@ package com.sherry.service;
 
 
 import com.sherry.dto.PatientDTO;
+import com.sherry.dto.PatientUpdateDTO;
 import com.sherry.dto.UserLoginDTO;
 import com.sherry.entity.Patient;
 
@@ -18,4 +19,10 @@ public interface PatientService {
      * @param patientDTO
      */
     void save(PatientDTO patientDTO);
+
+    /**
+     * 医生修改患者信息
+     * @param patientUpdateDTO
+     */
+    void updatePatientInfo(PatientUpdateDTO patientUpdateDTO);
 }
