@@ -14,7 +14,6 @@
     <if test="specialization!=null"> specialization = #{specialization},</if>
     <if test="position!=null"> position = #{position},</if>
     <if test="modelId!=null"> model_id = #{modelId},</if>
-
 </set>
             where doctor_id=#{doctorId}
     </update>

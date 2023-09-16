@@ -22,4 +22,6 @@ public class Model implements Serializable {
     private String modelStartTime;
 
     private String modelEndTime;
+
+    private Integer isDeleted;
 }

@@ -14,6 +14,7 @@ import com.sherry.mapper.CategoryMapper;
 import com.sherry.mapper.DoctorMapper;
 import com.sherry.result.PageResult;
 import com.sherry.service.DoctorService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import org.springframework.util.DigestUtils;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DoctorServiceImpl implements DoctorService {
 
     @Autowired
@@ -65,7 +67,6 @@ public class DoctorServiceImpl implements DoctorService {
      * @param doctorDTO
      */
     public void save(DoctorDTO doctorDTO) {
-
         Doctor doctor = new Doctor();
         BeanUtils.copyProperties(doctorDTO,doctor);
         doctor.setModelId(0L);
@@ -86,7 +87,7 @@ public class DoctorServiceImpl implements DoctorService {
      * @param doctorId
      * @return
      */
-    public Doctor getById(Long doctorId) {
+    public Doctor getDoctor(Long doctorId) {
         Doctor doctor=doctorMapper.getById(doctorId);
         doctor.setPassword("******");
         return doctor;
@@ -111,7 +112,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     /**
-     *
+     *查询医生的模板id
      * @param doctorId
      * @return
      */
@@ -121,7 +122,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     /**
-     * 分页查询所有医生
+     * 患者分页查询所有医生
      * @return
      */
     public PageResult pageDoctor(PageQueryDTO pageQueryDTO) {

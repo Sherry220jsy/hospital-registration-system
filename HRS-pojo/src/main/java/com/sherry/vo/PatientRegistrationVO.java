@@ -26,4 +26,6 @@ public class PatientRegistrationVO implements Serializable {
     private Integer fee;
 
     private String categoryName;
+
+    private Integer isChange=0;
 }

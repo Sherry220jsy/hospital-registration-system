@@ -25,4 +25,6 @@ public class ModelCategory implements Serializable {
     private String categoryName;
 
     private Integer count;
+
+    private Integer isDeleted;
 }

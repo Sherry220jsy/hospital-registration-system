@@ -4,17 +4,29 @@
 <mapper namespace="com.sherry.mapper.ModelCategoryMapper">
 
 
-    <insert id="insertBath">
-        insert into model_category (model_id,category_id,category_start_time,category_end_time,count,category_name) values
-     <foreach collection="modelCategories" item="mc" separator=",">
-         (#{mc.modelId},#{mc.categoryId},#{mc.categoryStartTime},#{mc.categoryEndTime},#{mc.count},#{mc.categoryName})
-     </foreach>
+    <insert id="insert">
+        insert into model_category (model_id,category_id,category_start_time,category_end_time,count,category_name,is_deleted) values
+       (#{modelId},#{categoryId},#{categoryStartTime},#{categoryEndTime},#{count},#{categoryName},#{isDeleted})
     </insert>
 
-    <delete id="deleteByModelId">
-        delete from model_category where model_id=#{modelId}
-    </delete>
+    <update id="deleteByModelId">
+    update  model_category
+    set is_deleted = 1
+    where model_id=#{modelId}
+    </update>
+    <update id="update">
+        update model_category
+<set>
+    <if test="categoryStartTime != null">category_start_time=#{categoryStartTime},</if>
+    <if test="categoryEndTime != null">category_end_time=#{categoryEndTime},</if>
+    <if test="categoryId != null">category_id=#{categoryId},</if>
+    <if test="count != null">count=#{count},</if>
+    <if test="categoryName != null">category_name=#{categoryName},</if>
+</set>
+where model_category_id=#{modelCategoryId}
+    </update>
+
     <select id="getByModelId" resultType="com.sherry.entity.ModelCategory">
-        select * from model_category where model_id=#{modelId}
+        select * from model_category where model_id=#{modelId} and is_deleted != 1
     </select>
 </mapper>

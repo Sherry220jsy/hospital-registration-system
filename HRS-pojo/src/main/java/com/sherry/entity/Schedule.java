@@ -22,4 +22,8 @@ public class Schedule implements Serializable {
     private String scheduleStartTime;
 
     private String scheduleEndTime;
+
+    private Integer isDeleted;
+
+    private Integer isChange=0;
 }

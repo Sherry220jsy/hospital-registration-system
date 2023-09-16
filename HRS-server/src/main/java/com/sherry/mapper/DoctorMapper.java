@@ -34,7 +34,16 @@ public interface DoctorMapper {
     void update(Doctor doctor);
 
 
+    /**
+     * 根据医生id查询他的模板id
+     * @param doctorId
+     * @return
+     */
     Long getModelId(Long doctorId);
 
+    /**
+     *患者分页查询医生信息
+     * @return
+     */
     Page<PatientDoctorVO> getPatientDoctor();
 }

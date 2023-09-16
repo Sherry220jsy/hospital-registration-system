@@ -4,9 +4,10 @@
 <mapper namespace="com.sherry.mapper.CategoryMapper">
 
     <insert id="insert">
-        insert into category (category_id,fee,category_name,time,doctor_id)
-        values (#{categoryId},#{fee},#{categoryName},#{time},#{doctorId})
+        insert into category (category_id,fee,category_name,time,doctor_id,is_deleted)
+        values (#{categoryId},#{fee},#{categoryName},#{time},#{doctorId},#{isDeleted})
     </insert>
+
     <update id="update">
         update category
 <set>
@@ -17,14 +18,18 @@
             where category_id =#{categoryId}
     </update>
 
-    <delete id="deleteById">
-        delete from category where category_id=#{categoryId}
-    </delete>
+    <update id="deleteById">
+        update category
+        set is_deleted = 1
+       where category_id = #{categoryId}
+    </update>
+
 
     <select id="getByDoctorId" resultType="com.sherry.entity.Category">
-        select * from category where doctor_id=#{doctorId}
+        select * from category where doctor_id=#{doctorId} and is_deleted != 1
     </select>
+
     <select id="getByCategoryId" resultType="com.sherry.entity.Category">
-        select * from category where category_id=#{category_id}
+        select * from category where category_id=#{category_id} and is_deleted != 1
     </select>
 </mapper>

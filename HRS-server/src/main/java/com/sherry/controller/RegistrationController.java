@@ -5,6 +5,8 @@ import com.sherry.context.BaseContext;
 import com.sherry.dto.PageQueryDTO;
 import com.sherry.dto.PatientUpdateDTO;
 import com.sherry.dto.StatusDTO;
+import com.sherry.entity.ByDate;
+import com.sherry.entity.Registration;
 import com.sherry.result.PageResult;
 import com.sherry.result.Result;
 import com.sherry.service.PatientService;
@@ -27,14 +29,13 @@ public class RegistrationController {
     private PatientService patientService;
 
     /**
-     * 患者查询某个医生的挂号信息
-     * @param doctorId
-     * @param date
+     * 患者查询某个医生某天的挂号信息
+     * @param byDate
      * @return
      */
     @GetMapping("/patient/doctor/page")
-    public Result<List<PatientRegistrationVO>> getByDoctorId(Long doctorId , String date){
-       List<PatientRegistrationVO> patientRegistrationVOs = registrationService.getByDoctorId(doctorId,date);
+    public Result<List<PatientRegistrationVO>> getByDoctorId(ByDate byDate) {
+       List<PatientRegistrationVO> patientRegistrationVOs = registrationService.getByDoctorId(byDate);
        return  Result.success(patientRegistrationVOs);
     }
 
@@ -45,13 +46,12 @@ public class RegistrationController {
      */
     @PostMapping("/patient/doctor")
     public Result register(Long registrationId){
-        Long patientId = BaseContext.getCurrentId();
-        registrationService.register(registrationId,patientId);
+        registrationService.register(registrationId);
         return Result.success();
     }
 
     /**
-     * 患者查看历史订单
+     * 患者分页查看历史订单
      * @param pageQueryDTO
      * @return
      */
@@ -84,13 +84,14 @@ public class RegistrationController {
     }
 
     /**
-     * 医生查询自己的患者信息
+     * 医生分页查询自己的患者信息
      * @param pageQueryDTO
      * @return
      */
     @GetMapping("/doctor/patient/page")
     public Result<PageResult> patientInfo( PageQueryDTO pageQueryDTO){
         PageResult pageResult = registrationService.getPatientByDoctorId(pageQueryDTO);
+        log.info("查询到的患者信息，{}",pageResult);
         return Result.success(pageResult);
     }
 

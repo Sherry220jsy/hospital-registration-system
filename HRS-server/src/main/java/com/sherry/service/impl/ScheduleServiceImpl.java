@@ -3,7 +3,9 @@ package com.sherry.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sherry.constant.DateTypeConstant;
+import com.sherry.constant.IsdeletedConstant;
 import com.sherry.dto.SchedulePageDTO;
+import com.sherry.entity.ByDate;
 import com.sherry.entity.Schedule;
 import com.sherry.mapper.ScheduleMapper;
 import com.sherry.result.PageResult;
@@ -24,6 +26,7 @@ public class ScheduleServiceImpl implements ScheduleService {
      * @param schedule
      */
     public void save(Schedule schedule) {
+        schedule.setIsDeleted(IsdeletedConstant.NOTDELETED);
         scheduleMapper.insert(schedule);
     }
 
@@ -67,9 +70,13 @@ public class ScheduleServiceImpl implements ScheduleService {
         return new PageResult(total,records);
     }
 
-
-    public Schedule getByDate(Long doctorId, String date) {
-        Schedule schedule=scheduleMapper.getByDate(doctorId,date);
+    /**
+     * 通过医生id和date查询对应的排班信息
+     * @param byDate
+     * @return
+     */
+    public Schedule getByDate(ByDate byDate) {
+        Schedule schedule=scheduleMapper.getByDate(byDate);
         return schedule;
     }
 

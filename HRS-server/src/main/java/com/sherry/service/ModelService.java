@@ -1,7 +1,9 @@
 package com.sherry.service;
 
 import com.sherry.dto.ModelDTO;
+import com.sherry.dto.PageModelDTO;
 import com.sherry.entity.Model;
+import com.sherry.result.PageResult;
 import com.sherry.vo.ModelVO;
 
 import java.util.List;
@@ -21,17 +23,27 @@ public interface ModelService {
     void delete(Long modelId);
 
     /**
-     *
+     *分页查询排班模板
+     * @param doctorId
+     * @return
+     */
+  PageResult pageGetByDoctorId(PageModelDTO pageModelDTO);
+
+    /**
+     * 查询排班模板信息
      * @param doctorId
      * @return
      */
     List<ModelVO> getByDoctorId(Long doctorId);
 
-    Model getByModelId(Long modelId);
 
     /**
-     *
-     * @param modelDTO
+     * 通过排班模板id查询排班模板
+     * @param modelId
+     * @return
      */
-//    void update(ModelDTO modelDTO);
+    Model getByModelId(Long modelId);
+
+
+    void update(ModelDTO modelDTO);
 }

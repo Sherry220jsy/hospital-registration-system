@@ -25,4 +25,6 @@ public class PatientVO implements Serializable {
 
     private Long registrationId;
 
+    private Integer isChange=0;
+
 }

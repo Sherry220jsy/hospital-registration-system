@@ -6,30 +6,27 @@ import com.sherry.constant.StatusConstant;
 import com.sherry.context.BaseContext;
 import com.sherry.dto.PageQueryDTO;
 import com.sherry.dto.StatusDTO;
-import com.sherry.entity.Category;
-import com.sherry.entity.ModelCategory;
-import com.sherry.entity.Registration;
+import com.sherry.entity.*;
 import com.sherry.mapper.CategoryMapper;
 import com.sherry.mapper.ModelCategoryMapper;
 import com.sherry.mapper.RegistrationMapper;
 import com.sherry.result.PageResult;
-import com.sherry.result.Result;
 import com.sherry.service.RegistrationService;
 import com.sherry.vo.PatientRegistrationVO;
 import com.sherry.vo.PatientVO;
 import com.sherry.vo.RegistrationVO;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
+@Slf4j
 public class RegistrationServiceImpl implements RegistrationService {
 
     @Autowired
@@ -43,38 +40,36 @@ public class RegistrationServiceImpl implements RegistrationService {
     /**
      * 患者挂号预约
      * @param registrationId
-     * @param patientId
      */
-    public void register(Long registrationId, Long patientId) {
+    public void register(Long registrationId) {
         Registration registration=new Registration();
         registration.setRegistrationId(registrationId);
-        registration.setPatientId(patientId);
+        registration.setPatientId(BaseContext.getCurrentId());
         registration.setStatus(StatusConstant.RESERVED);
         registrationMapper.update(registration);
     }
 
     /**
      * 删除对应模板号和日期的挂号订单
-     * @param modelId
-     * @param date
+     * @param byDate
      */
-    public void deleteByModelId(Long modelId, String date) {
-        List<ModelCategory> modelCategories = modelCategoryMapper.getByModelId(modelId);
+    public void deleteByModelId(ByDate byDate) {
+        List<ModelCategory> modelCategories = modelCategoryMapper.getByModelId(byDate.getModelId());
         if(modelCategories!=null && modelCategories.size()>0){
-            for(ModelCategory modelCategory:modelCategories){
-                registrationMapper.deleteByModelCategoryId(modelCategory.getModelCategoryId(),date);
+            for(ModelCategory modelCategory:modelCategories) {
+               byDate.setModelCategoryId(modelCategory.getModelCategoryId());
+                registrationMapper.deleteByModelCategoryId(byDate);
             }
         }
     }
 
     /**
      * 设置排班模板，增加对应的挂号订单
-     * @param modelId
-     * @param date
+     * @param byDate
      */
-    public void saveByModelId(Long modelId, String date) {
+    public void saveByModelId(ByDate byDate) {
         //modelCategory中
-        List<ModelCategory> modelCategoryList = modelCategoryMapper.getByModelId(modelId);
+        List<ModelCategory> modelCategoryList = modelCategoryMapper.getByModelId(byDate.getModelId());
         //新增每个modelCategory对应挂号订单
         for(ModelCategory modelCategory:modelCategoryList){
 
@@ -86,7 +81,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             //设置订单状态  未预约
             registration.setStatus(StatusConstant.UNAPPOINTED);
             //设置挂号订单的日期
-            registration.setDate(date);
+            registration.setDate(byDate.getDate());
             //获得modelCategory对应的category，设置每个挂号的categoryId、看诊的开始时间和结束时间
             Long categoryId=modelCategory.getCategoryId();
             registration.setRegistrationId(categoryId);
@@ -110,13 +105,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
     /**
-     * 患者查询某个医生的挂号信息
-     * @param doctorId
-     * @param date
+     * 查询某个医生某天的挂号信息
+     * @param byDate
      * @return
      */
-    public List<PatientRegistrationVO> getByDoctorId(Long doctorId, String date) {
-        List<PatientRegistrationVO>  patientRegistrationVOs=registrationMapper.getByDoctorId(doctorId,date);
+    public List<PatientRegistrationVO> getByDoctorId(ByDate byDate) {
+        List<PatientRegistrationVO>  patientRegistrationVOs=registrationMapper.getByDoctorId(byDate);
         return patientRegistrationVOs;
     }
 
@@ -135,7 +129,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     /**
-     * 医生查询自己挂号订单
+     * 医生分页查询自己挂号订单
      * @param pageQueryDTO
      * @return
      */
@@ -159,12 +153,17 @@ public class RegistrationServiceImpl implements RegistrationService {
         registrationMapper.update(registration);
     }
 
-
+    /**
+     * 医生分页查询患者信息
+     * @param pageQueryDTO
+     * @return
+     */
     public PageResult getPatientByDoctorId(PageQueryDTO pageQueryDTO) {
         PageHelper.startPage(pageQueryDTO.getPage(),pageQueryDTO.getPageSize());
         Long doctorId =BaseContext.getCurrentId();
         Page<PatientVO> page = registrationMapper.getPatientByDoctorId(doctorId);
         long total =page.getTotal();
+        log.info("total ,{}",total);
         List<PatientVO> records = page.getResult();
         return new PageResult(total,records);
     }

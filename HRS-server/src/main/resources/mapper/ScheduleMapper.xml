@@ -5,8 +5,8 @@
 
 
     <insert id="insert">
-        insert into schedule (schedule_id,doctor_id,date,schedule_start_time,schedule_end_time)
-        values (#{scheduleId},#{doctorId},#{date},#{scheduleStartTime},#{scheduleEndTime})
+        insert into schedule (schedule_id,doctor_id,date,schedule_start_time,schedule_end_time,is_deleted)
+        values (#{scheduleId},#{doctorId},#{date},#{scheduleStartTime},#{scheduleEndTime},#{isDeleted})
     </insert>
     <update id="update">
         update schedule
@@ -15,31 +15,33 @@
     <if test="scheduleEndTime !=null" >schedule_end_time =#{scheduleEndTime},</if>
     <if test="date !=null" >date =#{date},</if>
 </set>
+        where schedule_id=#{scheduleId} and is_deleted != 1
+    </update>
+
+    <update id="delectByScheduleId">
+        update schedule
+        set is_deleted=1
         where schedule_id=#{scheduleId}
     </update>
 
-    <delete id="delectByScheduleId">
-        delete from schedule where schedule_id=#{scheduleId}
-    </delete>
-
     <select id="getDay" resultType="com.sherry.entity.Schedule">
-        select * from schedule where date=#{date}
+        select * from schedule where date=#{date} and is_deleted != 1
       order by date asc,schedule_start_time asc,schedule_end_time asc
     </select>
 
     <select id="getWeek" resultType="com.sherry.entity.Schedule">
         select * from schedule
-        where YEARWEEK(date) = YEARWEEK(#{date})
+        where YEARWEEK(date) = YEARWEEK(#{date}) and is_deleted != 1
         order by date asc,schedule_start_time asc,schedule_end_time asc
     </select>
 
     <select id="getMonth" resultType="com.sherry.entity.Schedule">
         select * from schedule
-        where DATE_FORMAT(date, '%Y-%m') = DATE_FORMAT(#{date}, '%Y-%m')
+        where DATE_FORMAT(date, '%Y-%m') = DATE_FORMAT(#{date}, '%Y-%m') and is_deleted != 1
         order by date asc,schedule_start_time asc,schedule_end_time asc
     </select>
     <select id="getByDate" resultType="com.sherry.entity.Schedule">
-        select * from schedule where date=#{date} and doctor_id=#{doctorId}
+        select * from schedule where date=#{date} and doctor_id=#{doctorId} and is_deleted != 1
     </select>
 
 </mapper>

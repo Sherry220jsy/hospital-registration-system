@@ -1,9 +1,9 @@
 HRS:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    host: localhost
+    host: 117.50.163.249
     port: 3306
     database: hospital-registration-system
     username: root
-    password: ZJYisapig0417
+    password: hzau.0213
 

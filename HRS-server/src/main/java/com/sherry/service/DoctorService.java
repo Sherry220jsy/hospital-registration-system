@@ -27,7 +27,7 @@ public interface DoctorService {
      * @param id
      * @return
      */
-    Doctor getById(Long id);
+    Doctor getDoctor(Long id);
 
 
     /**

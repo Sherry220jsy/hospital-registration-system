@@ -2,6 +2,7 @@ package com.sherry.mapper;
 
 import com.github.pagehelper.Page;
 import com.sherry.dto.SchedulePageDTO;
+import com.sherry.entity.ByDate;
 import com.sherry.entity.Schedule;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -48,5 +49,10 @@ public interface ScheduleMapper {
      */
     Page<Schedule> getMonth(SchedulePageDTO schedulePageDTO);
 
-    Schedule getByDate(Long doctorId, String date);
+    /**
+     * 通过医生id和date查询对应的排班信息
+     * @param byDate
+     * @return
+     */
+    Schedule getByDate(ByDate byDate);
 }

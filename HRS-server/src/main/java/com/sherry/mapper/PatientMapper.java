@@ -20,5 +20,9 @@ public interface PatientMapper {
      */
     void insert(Patient patient);
 
+    /**
+     * 更新患者信息
+     * @param patient
+     */
     void update(Patient patient);
 }

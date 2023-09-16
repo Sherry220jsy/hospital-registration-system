@@ -25,4 +25,5 @@ public class ModelDTO implements Serializable {
     private String modelEndTime;
 
     private List<ModelCategory> modelCategories;
+
 }

@@ -1,6 +1,7 @@
 package com.sherry.mapper;
 
 import com.github.pagehelper.Page;
+import com.sherry.entity.ByDate;
 import com.sherry.entity.Registration;
 import com.sherry.vo.PatientRegistrationVO;
 import com.sherry.vo.PatientVO;
@@ -11,20 +12,49 @@ import java.util.List;
 
 @Mapper
 public interface RegistrationMapper {
-    void deleteByModelCategoryId(Long modelCategoryId, String date);
+    /**
+     * 删除通过date和modelCategoryId
+     * @param byDate
+     */
+    void deleteByModelCategoryId(ByDate byDate);
 
+    /**
+     *添加挂号订单
+     * @param registration
+     */
     void insert(Registration registration);
 
-    List<PatientRegistrationVO> getByDoctorId(Long doctorId, String date);
+    /**
+     *查询某个医生某天的挂号信息
+     * @param byDate
+     * @return
+     */
+    List<PatientRegistrationVO> getByDoctorId(ByDate byDate);
 
-
-
+    /**
+     * 修改挂号订单信息
+     * @param registration
+     */
     void update(Registration registration);
 
+    /**
+     * 患者分页查看历史订单
+     * @param patientId
+     * @return
+     */
     Page<RegistrationVO> getByPatientId(Long patientId);
 
-
+    /**
+     * 医生分页查询自己挂号订单
+     * @param doctorId
+     * @return
+     */
     Page<RegistrationVO> pageGetByDoctorId(Long doctorId);
 
+    /**
+     * 医生分页查询患者信息
+     * @param doctorId
+     * @return
+     */
     Page<PatientVO>  getPatientByDoctorId(Long doctorId);
 }

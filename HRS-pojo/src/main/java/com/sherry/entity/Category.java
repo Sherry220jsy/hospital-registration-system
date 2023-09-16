@@ -22,4 +22,7 @@ public class Category implements Serializable {
 
     private Long doctorId;
 
+    private Integer isDeleted;
+
+    private Integer isChange=0;
 }

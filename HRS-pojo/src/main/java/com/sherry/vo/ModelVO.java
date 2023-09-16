@@ -25,4 +25,6 @@ public class ModelVO implements Serializable {
     private String modelEndTime;
 
     private List<ModelCategory> modelCategories;
+
+    private  Integer isChange=0;
 }

@@ -44,7 +44,7 @@ public class CommonController {
     @PostMapping
     public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
 
-        log.info("员工登录：{}", userLoginDTO);
+        log.info("用工登录：{}", userLoginDTO);
         UserLoginVO userLoginVO = null;
         if (userLoginDTO.getUserType().equals(UserTypeConstant.DOCTOR)) {
             Doctor doctor = doctorService.login(userLoginDTO);
@@ -79,6 +79,7 @@ public class CommonController {
                     .build();
 
         }
+        log.info("登录成功,{}",userLoginVO);
         return Result.success(userLoginVO);
 
 

@@ -4,26 +4,31 @@
 <mapper namespace="com.sherry.mapper.ModelMapper">
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="modelId">
-       insert into model (doctor_id,model_name,model_start_time,model_end_time)
-        values (#{doctorId},#{modelName},#{modelStartTime},#{modelEndTime})
+       insert into model (doctor_id,model_name,model_start_time,model_end_time,is_deleted)
+        values (#{doctorId},#{modelName},#{modelStartTime},#{modelEndTime},#{isDeleted})
     </insert>
     <update id="update">
         update model
     <set>
-        <if test="modelName != null">model_name=#{modelName}</if>
-        <if test="modelStartTime != null">model_start_time=#{modelStartTime}</if>
-        <if test="modelEndTime != null">model_end_time=#{modelEndTime}</if>
+        <if test="modelName != null">model_name=#{modelName},</if>
+        <if test="modelStartTime != null">model_start_time=#{modelStartTime},</if>
+        <if test="modelEndTime != null">model_end_time=#{modelEndTime},</if>
     </set>
-      where model_id=#{modelId}
+      where model_id=#{modelId} and is_deleted != 1
     </update>
-    <delete id="delete">
-        delete from model where model_id=#{modelId}
-    </delete>
-    <select id="getByDoctorId" resultType="com.sherry.entity.Model">
-        select * from model where doctor_id=#{doctorId}
+    <update id="delete">
+        update model
+        set is_deleted = 1
+        where model_id=#{modelId}
+    </update>
+    <select id="pageGetByDoctorId" resultType="com.sherry.vo.ModelVO">
+        select * from model where doctor_id=#{doctorId} and is_deleted != 1
     </select>
     <select id="getByModelId" resultType="com.sherry.entity.Model">
-        select * from model where model_id=#{modelId}
+        select * from model where model_id=#{modelId} and is_deleted != 1
+    </select>
+    <select id="getByDoctorId" resultType="com.sherry.vo.ModelVO">
+        select * from model where doctor_id=#{doctorId} and is_deleted != 1
     </select>
 
 </mapper>

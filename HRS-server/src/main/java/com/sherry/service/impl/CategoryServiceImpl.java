@@ -1,5 +1,6 @@
 package com.sherry.service.impl;
 
+import com.sherry.constant.IsdeletedConstant;
 import com.sherry.entity.Category;
 import com.sherry.mapper.CategoryMapper;
 import com.sherry.service.CategoryService;
@@ -17,6 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
      * @param category
      */
     public void addCategory(Category category) {
+        category.setIsDeleted(IsdeletedConstant.NOTDELETED);
         categoryMapper.insert(category);
     }
 

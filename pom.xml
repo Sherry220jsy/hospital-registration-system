@@ -10,8 +10,8 @@
   </parent>
   <groupId>com.sherry</groupId>
   <artifactId>hospital-registration-system</artifactId>
-  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
   <modules>
     <module>HRS-common</module>
     <module>HRS-pojo</module>
@@ -118,14 +118,48 @@
         <artifactId>poi-ooxml</artifactId>
         <version>${poi}</version>
       </dependency>
-      <!--微信支付-->
-<!--      <dependency>-->
-<!--        <groupId>com.github.wechatpay-apiv3</groupId>-->
-<!--        <artifactId>wechatpay-apache-httpclient</artifactId>-->
-<!--        <version>0.4.8</version>-->
-<!--      </dependency>-->
 
 
     </dependencies>
   </dependencyManagement>
+<!--  <build>-->
+<!--    <plugins>-->
+<!--      &lt;!&ndash; 此插件必须放在父 POM 中  &ndash;&gt;-->
+<!--      <plugin>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-assembly-plugin</artifactId>-->
+<!--        <version>3.3.0</version>-->
+<!--        <executions>-->
+<!--          &lt;!&ndash;-->
+<!--          执行本插件的方法为，在主目录下执行如下命令：-->
+<!--          mvn package assembly:single-->
+
+<!--          对于 IntelliJ IDEA，生成的 JAR 包位于每个模块下的文件夹 target-->
+<!--          &ndash;&gt;-->
+<!--          <execution>-->
+<!--            <id>make-assembly</id>-->
+<!--            <phase>package</phase>-->
+<!--            <goals>-->
+<!--              &lt;!&ndash; 此处 IntelliJ IDEA 可能会报红，这是正常现象  &ndash;&gt;-->
+<!--              <goal>single</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--        <configuration>-->
+<!--          <archive>-->
+<!--            <manifest>-->
+<!--              &lt;!&ndash; 配置程序运行入口所在的类 &ndash;&gt;-->
+<!--              <mainClass>com.sherry.HRSApplication</mainClass>-->
+<!--            </manifest>-->
+<!--          </archive>-->
+<!--          &lt;!&ndash; 设置 JAR 包输出目录 &ndash;&gt;-->
+<!--          <outputDirectory>C:\Java/#maven-assembly-plugin</outputDirectory>-->
+<!--          &lt;!&ndash; 设置打包后的 JAR 包的目录结构为默认 &ndash;&gt;-->
+<!--          <descriptorRefs>-->
+<!--            <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--          </descriptorRefs>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
+<!--    </plugins>-->
+<!--  </build>-->
 </project>

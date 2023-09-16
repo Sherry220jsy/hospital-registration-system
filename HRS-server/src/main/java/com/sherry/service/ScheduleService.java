@@ -1,6 +1,7 @@
 package com.sherry.service;
 
 import com.sherry.dto.SchedulePageDTO;
+import com.sherry.entity.ByDate;
 import com.sherry.entity.Schedule;
 import com.sherry.result.PageResult;
 
@@ -31,5 +32,10 @@ public interface ScheduleService {
      */
     PageResult pageByDateType(SchedulePageDTO schedulePageDTO);
 
-    Schedule getByDate(Long doctorId, String date);
+    /**
+     * 通过日期和医生id查询排班信息
+     * @param byDate
+     * @return
+     */
+    Schedule getByDate(ByDate byDate);
 }

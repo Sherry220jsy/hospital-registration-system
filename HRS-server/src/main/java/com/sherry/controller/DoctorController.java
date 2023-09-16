@@ -40,7 +40,7 @@ public class DoctorController {
     @GetMapping("/info")
     public Result<Doctor> getDoctor(){
         log.info(("医生查询自己信息"));
-        Doctor doctor =doctorService.getById(BaseContext.getCurrentId());
+        Doctor doctor =doctorService.getDoctor(BaseContext.getCurrentId());
         return Result.success(doctor);
     }
 
@@ -61,8 +61,8 @@ public class DoctorController {
     }
 
     /**
-     * TODO 为完成，挂号完成后完成
-     * 查询患者信息
+     *
+     * 分页查询医生患者信息
      * @param pageQueryDTO
      * @return
      */
@@ -74,6 +74,11 @@ public class DoctorController {
     }
 
 
+    /**
+     * 患者挂号时分页查询医生信息
+     * @param pageQueryDTO
+     * @return
+     */
     @GetMapping("/page")
     public Result<PageResult> pageDoctor(PageQueryDTO pageQueryDTO) {
         PageResult pageResult = doctorService.pageDoctor(pageQueryDTO);
