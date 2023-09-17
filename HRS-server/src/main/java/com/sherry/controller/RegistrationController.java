@@ -35,6 +35,7 @@ public class RegistrationController {
      */
     @GetMapping("/patient/doctor/page")
     public Result<List<PatientRegistrationVO>> getByDoctorId(ByDate byDate) {
+        log.info("患者查询某个医生某天的挂号信息：{}",byDate);
        List<PatientRegistrationVO> patientRegistrationVOs = registrationService.getByDoctorId(byDate);
        return  Result.success(patientRegistrationVOs);
     }
@@ -44,8 +45,9 @@ public class RegistrationController {
      * @param registrationId
      * @return
      */
-    @PostMapping("/patient/doctor")
+    @PostMapping("/patient/doctor/page")
     public Result register(Long registrationId){
+        log.info("患者挂号id：{}",registrationId);
         registrationService.register(registrationId);
         return Result.success();
     }
@@ -57,6 +59,7 @@ public class RegistrationController {
      */
     @GetMapping("/patient/history")
     public Result<PageResult> historyRegistration(PageQueryDTO pageQueryDTO){
+        log.info("患者分页查看历史订单：{}",pageQueryDTO);
         PageResult pageResult = registrationService.getByPatientId(pageQueryDTO);
         return Result.success(pageResult);
     }
@@ -68,6 +71,7 @@ public class RegistrationController {
      */
     @GetMapping("/doctor/page")
     public Result<PageResult> registrationInfo(PageQueryDTO pageQueryDTO){
+        log.info("患者分页查询所有医生信息：{}",pageQueryDTO);
         PageResult pageResult = registrationService.getByDoctorId(pageQueryDTO);
         return Result.success(pageResult);
     }
@@ -79,6 +83,7 @@ public class RegistrationController {
      */
     @PutMapping("/doctor")
     public Result updateStatue(@RequestBody StatusDTO statusDTO){
+        log.info("医生修改挂号订单状态：{}",statusDTO);
         registrationService.updateStatus(statusDTO);
         return Result.success();
     }
@@ -90,6 +95,7 @@ public class RegistrationController {
      */
     @GetMapping("/doctor/patient/page")
     public Result<PageResult> patientInfo( PageQueryDTO pageQueryDTO){
+        log.info("医生分页查询自己患者的信息：{}",pageQueryDTO);
         PageResult pageResult = registrationService.getPatientByDoctorId(pageQueryDTO);
         log.info("查询到的患者信息，{}",pageResult);
         return Result.success(pageResult);
@@ -102,6 +108,7 @@ public class RegistrationController {
      */
     @PutMapping("/doctor/patient/page")
     public Result updatePatientInfo(@RequestBody PatientUpdateDTO patientUpdateDTO){
+        log.info("医生修改患者信息：{}",patientUpdateDTO);
         patientService.updatePatientInfo(patientUpdateDTO);
         return Result.success();
     }

@@ -21,14 +21,19 @@
         set is_deleted = 1
         where model_id=#{modelId}
     </update>
+
     <select id="pageGetByDoctorId" resultType="com.sherry.vo.ModelVO">
         select * from model where doctor_id=#{doctorId} and is_deleted != 1
     </select>
-    <select id="getByModelId" resultType="com.sherry.entity.Model">
-        select * from model where model_id=#{modelId} and is_deleted != 1
-    </select>
+
+
     <select id="getByDoctorId" resultType="com.sherry.vo.ModelVO">
         select * from model where doctor_id=#{doctorId} and is_deleted != 1
+    </select>
+
+
+    <select id="getByModelId" resultType="com.sherry.entity.Model">
+        select * from model where model_id=#{modeld}
     </select>
 
 </mapper>

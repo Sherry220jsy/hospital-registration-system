@@ -30,5 +30,5 @@ public class RegistrationVO implements Serializable {
 
     private String categoryName;
 
-    private Integer isChange=0;
+    private  static final Integer isChange=0;
 }

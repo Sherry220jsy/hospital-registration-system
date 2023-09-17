@@ -42,8 +42,10 @@ public interface ModelService {
      * @param modelId
      * @return
      */
-    Model getByModelId(Long modelId);
+    ModelVO getByModelId(Long modelId);
 
 
     void update(ModelDTO modelDTO);
+
+
 }

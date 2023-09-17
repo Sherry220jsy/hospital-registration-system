@@ -26,5 +26,5 @@ public class ModelVO implements Serializable {
 
     private List<ModelCategory> modelCategories;
 
-    private  Integer isChange=0;
+    private  static final Integer isChange=0;
 }

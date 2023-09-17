@@ -27,6 +27,11 @@ where model_category_id=#{modelCategoryId}
     </update>
 
     <select id="getByModelId" resultType="com.sherry.entity.ModelCategory">
-        select * from model_category where model_id=#{modelId} and is_deleted != 1
+        select mc.model_category_id,mc.model_id,mc.category_start_time,mc.category_end_time,mc.count,mc.category_id ,c.category_name from model_category mc
+        left join category c  on c.category_id=mc.category_id
+        where mc.model_id=#{modelId} and mc.is_deleted != 1
+    </select>
+    <select id="getById" resultType="com.sherry.entity.ModelCategory">
+        select * from model_category where model_category_id=#{modelCategoryId}
     </select>
 </mapper>

@@ -32,7 +32,7 @@ public class Doctor implements Serializable {
 
     private String position;
 
-    private Long modelId;
+//    private Long modelId;
 
 }
 

@@ -44,7 +44,7 @@ public interface DoctorService {
     PageResult pagePatient(PageQueryDTO pageQueryDTO);
 
 
-    Long getModelId(Long currentId);
+//    Long getModelId(Long currentId);
 
     /**
      * 分页查询所有医生

@@ -28,8 +28,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Autowired
     private DoctorMapper doctorMapper;
-    @Autowired
-    private CategoryMapper categoryMapper;
+
     /**
      * 医生登录
      * @param userLoginDTO
@@ -69,7 +68,6 @@ public class DoctorServiceImpl implements DoctorService {
     public void save(DoctorDTO doctorDTO) {
         Doctor doctor = new Doctor();
         BeanUtils.copyProperties(doctorDTO,doctor);
-        doctor.setModelId(0L);
 
         //存入加密后的密码
         String username = doctor.getUsername();
@@ -111,15 +109,15 @@ public class DoctorServiceImpl implements DoctorService {
         return null;
     }
 
-    /**
-     *查询医生的模板id
-     * @param doctorId
-     * @return
-     */
-    public Long getModelId(Long doctorId) {
-       Long modelId =doctorMapper.getModelId(doctorId);
-       return modelId;
-    }
+//    /**
+//     *查询医生的模板id
+//     * @param doctorId
+//     * @return
+//     */
+//    public Long getModelId(Long doctorId) {
+//       Long modelId =doctorMapper.getModelId(doctorId);
+//       return modelId;
+//    }
 
     /**
      * 患者分页查询所有医生

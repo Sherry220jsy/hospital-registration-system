@@ -15,6 +15,8 @@ public class PatientRegistrationVO implements Serializable {
 
     private Long registrationId;
 
+    private  Long modelCategoryId;
+
     private Integer status;
 
     private String visitStartTime;
@@ -27,5 +29,5 @@ public class PatientRegistrationVO implements Serializable {
 
     private String categoryName;
 
-    private Integer isChange=0;
+    private  static final Integer isChange=0;
 }

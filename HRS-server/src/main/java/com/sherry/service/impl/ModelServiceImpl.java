@@ -97,6 +97,7 @@ public class ModelServiceImpl implements ModelService {
             for (ModelVO modelVO : modelVOs) {
                 Long modelId =modelVO.getModelId();
                 List<ModelCategory> modelCategories =modelCategoryMapper.getByModelId(modelId);
+
                 modelVO.setModelCategories(modelCategories);
             }
         }
@@ -111,9 +112,13 @@ public class ModelServiceImpl implements ModelService {
      * @param modelId
      * @return
      */
-    public Model getByModelId(Long modelId) {
+    public ModelVO getByModelId(Long modelId) {
+        ModelVO modelVO = new ModelVO();
         Model model=modelMapper.getByModelId(modelId);
-        return model;
+        BeanUtils.copyProperties(model,modelVO);
+        List<ModelCategory> modelCategories =modelCategoryMapper.getByModelId(modelId);
+        modelVO.setModelCategories(modelCategories);
+        return modelVO;
     }
 
     /**
@@ -134,10 +139,10 @@ public class ModelServiceImpl implements ModelService {
             for(ModelCategory modelCategory:modelCategories) {
                 modelCategoryMapper.update(modelCategory);
             }
-
         }
-
     }
+
+
 
 
 }

@@ -13,7 +13,6 @@
     <if test="department!=null"> department = #{department},</if>
     <if test="specialization!=null"> specialization = #{specialization},</if>
     <if test="position!=null"> position = #{position},</if>
-    <if test="modelId!=null"> model_id = #{modelId},</if>
 </set>
             where doctor_id=#{doctorId}
     </update>
@@ -25,9 +24,7 @@
     <select id="getById" resultType="com.sherry.entity.Doctor">
         select * from doctor where doctor_id=#{doctorId}
     </select>
-    <select id="getModelId" resultType="java.lang.Long">
-        select model_id from doctor where doctor_id=#{doctorId}
-    </select>
+
     <select id="getPatientDoctor" resultType="com.sherry.dto.PatientDoctorVO">
         select doctor_id,name,sex,department,specialization,position from doctor
     </select>

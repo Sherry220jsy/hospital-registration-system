@@ -31,4 +31,11 @@ public interface ModelCategoryMapper {
      * @param modelCategory
      */
     void update(ModelCategory modelCategory);
+
+    /**
+     *通过modelCategoryId查询
+     * @param modelCategoreId
+     * @return
+     */
+    ModelCategory getById(Long modelCategoreId);
 }

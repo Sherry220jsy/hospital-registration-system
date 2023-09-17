@@ -29,6 +29,7 @@ public class ScheduleController {
      */
     @PostMapping("/info")
     public Result save(@RequestBody Schedule schedule){
+        log.info("新增排班信息：{}",schedule);
         schedule.setDoctorId(BaseContext.getCurrentId());
         scheduleService.save(schedule);
         return Result.success();
@@ -41,6 +42,7 @@ public class ScheduleController {
      */
     @DeleteMapping("/info")
     public Result delete(Long scheduleId){
+        log.info("删除排班信息通过排班id：{}",scheduleId);
         scheduleService.deleteByScheduleId(scheduleId);
         return Result.success();
     }
@@ -52,6 +54,7 @@ public class ScheduleController {
      */
     @PutMapping("/info")
     public Result update(@RequestBody Schedule schedule){
+        log.info("修改排班信息：{}",schedule);
         scheduleService.update(schedule);
         return  Result.success();
     }
@@ -63,6 +66,7 @@ public class ScheduleController {
      */
     @GetMapping("/info/page")
     public Result<PageResult> pageByDateType(SchedulePageDTO schedulePageDTO){
+        log.info("分页查询排班信息通过日期类型：{}",schedulePageDTO);
         PageResult pageResult = scheduleService.pageByDateType(schedulePageDTO);
         return Result.success(pageResult);
     }

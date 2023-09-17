@@ -17,6 +17,7 @@ public class CategoryController {
 
 @Autowired
 private CategoryService categoryService;
+
     /**
      * 新增挂号类别
      * @param category

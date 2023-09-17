@@ -20,7 +20,7 @@
         delete from registration where model_category_id=#{modelCategoryId} and date=#{date}
     </delete>
     <select id="getByDoctorId" resultType="com.sherry.vo.PatientRegistrationVO">
-        select r.registration_id,r.status,r.visit_start_time,r.visit_end_time,c.category_name ,c.fee ,r.date from registration r
+        select r.registration_id,r.status,r.visit_start_time,r.visit_end_time,c.category_name ,c.fee ,r.date ,r.model_category_id from registration r
         join category c on r.category_id=c.category_id
         where r.date =#{date} and r.doctor_id=#{doctorId}
        order by r.visit_start_time asc
