@@ -1,5 +1,6 @@
 package com.sherry.controller;
 
+import com.sherry.context.BaseContext;
 import com.sherry.dto.PatientDTO;
 import com.sherry.result.Result;
 import com.sherry.service.PatientService;
@@ -36,6 +37,7 @@ public class PatientController {
      */
     @PostMapping("/logout")
 public Result<String> logout(){
+        BaseContext.removeCurrentId();
      return Result.success();
 }
 

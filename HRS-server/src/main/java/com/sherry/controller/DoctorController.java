@@ -64,12 +64,12 @@ public class DoctorController {
      * @param pageQueryDTO
      * @return
      */
-    @GetMapping("/patientInfo/page")
-    public Result<PageResult> pagePatient(PageQueryDTO pageQueryDTO){
-        log.info("患者分页查询，参数为{}",pageQueryDTO);
-        PageResult pageResult = doctorService.pagePatient(pageQueryDTO);
-        return Result.success(pageResult);
-    }
+//    @GetMapping("/patientInfo/page")
+//    public Result<PageResult> pagePatient(PageQueryDTO pageQueryDTO){
+//        log.info("患者分页查询，参数为{}",pageQueryDTO);
+//        PageResult pageResult = doctorService.pagePatient(pageQueryDTO);
+//        return Result.success(pageResult);
+//    }
 
 
     /**
@@ -93,6 +93,7 @@ public class DoctorController {
     @PostMapping("/logout")
     public Result<String> logout(){
         log.info("退出登录");
+        BaseContext.removeCurrentId();
         return Result.success();
     }
 }

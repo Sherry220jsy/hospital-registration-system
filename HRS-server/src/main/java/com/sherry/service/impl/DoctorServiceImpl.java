@@ -45,9 +45,7 @@ public class DoctorServiceImpl implements DoctorService {
         if (doctor == null) {
             //账号不存在
             throw new AccountNotFoundException(MessageConstant.ACCOUNT_NOT_FOUND);
-
         }
-
         //密码比对
         //对输入的用户密码进行MD5加密处理
         password = DigestUtils.md5DigestAsHex((username+password).getBytes());
@@ -105,9 +103,9 @@ public class DoctorServiceImpl implements DoctorService {
      * @param pageQueryDTO
      * @return
      */
-    public PageResult pagePatient(PageQueryDTO pageQueryDTO) {
-        return null;
-    }
+//    public PageResult pagePatient(PageQueryDTO pageQueryDTO) {
+//        return null;
+//    }
 
 //    /**
 //     *查询医生的模板id
